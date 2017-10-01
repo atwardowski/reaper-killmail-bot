@@ -4,15 +4,17 @@ include 'vendor/autoload.php';
 
 use Seat\Eseye\Eseye;
 
-$webhookurl = 'https://discordapp.com/api/webhooks/123456789/abcdefg......';
-$chars = ['94307228'];
-$corps = ['98276273'];
-$alliances = ['99003214'];
+$webhookurl = '';
+$chars = [];
+$corps = [];
+$alliances = [];
 $postkills = true;
 $postlosses = true;
 $terminate_after_post = true;
 
 is_file('config.php') AND include 'config.php';
+
+$webhookurl OR die('You need to configure this script before you run it.');
 
 $esi = new Eseye();
 
