@@ -1,6 +1,7 @@
 [program:reaper-killmail-bot]
 user=reaper
-command=/usr/local/bin/php /home/reaper/reaper-killmail-bot/reaper-killmail-bot.php
+directory=/home/reaper/reaper-killmail-bot
+command=/home/reaper/reaper-killmail-bot/reaper-killmail-bot.php
 autostart=false
 autorestart=false
 stopasgroup=true
