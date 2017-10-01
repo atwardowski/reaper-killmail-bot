@@ -1,0 +1,15 @@
+{
+    "name": "atwardowski/reaper-killmail-bot",
+    "description": "Posts Eve killmails to a discord webhook",
+    "type": "project",
+    "require": {
+        "eveseat/eseye": "^0.0.10"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Algaert",
+            "email": "adam.algaert@gmail.com"
+        }
+    ]
+}

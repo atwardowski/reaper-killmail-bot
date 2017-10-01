@@ -1,0 +1,14 @@
+[program:reaper-killmail-bot]
+user=reaper
+command=/usr/local/bin/php /home/reaper/reaper-killmail-bot/reaper-killmail-bot.php
+autostart=false
+autorestart=false
+stopasgroup=true
+stderr_logfile=/home/reaper/reaper-killmail-bot/logs/reaperError.log
+stdout_logfile=/home/reaper/reaper-killmail-bot/logs/reaperOther.log
+stdout_logfile_maxbytes=100KB
+stdout_logfile_backups=3
+stderr_logfile_maxbytes=100KB
+stderr_logfile_backups=3
+priority=998
+
