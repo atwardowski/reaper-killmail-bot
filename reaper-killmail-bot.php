@@ -41,13 +41,18 @@ while (1) {
     if (!$postkill)
         continue;
     $killID = $km->package->killID;
-    $systemName = $esi->invoke('get', '/universe/systems/{system_id}/', [ 'system_id' => @$km->package->killmail->solar_system_id ])->name;
-    $killTime = $km->package->killmail->killmail_time;
-    $victimName = $esi->invoke('get', '/characters/{character_id}/', [ 'character_id' => @$km->package->killmail->victim->character_id ])->name;
-    $victimCorpName = $esi->invoke('get', '/corporations/{corporation_id}/', [ 'corporation_id' => @$km->package->killmail->victim->corporation_id ])->corporation_name;
-    $victimAllianceName = $esi->invoke('get', '/alliances/{alliance_id}/', [ 'alliance_id' => @$km->package->killmail->victim->alliance_id ])->alliance_name;
-    $shipName = $esi->invoke('get', '/universe/types/{type_id}/', [ 'type_id' => @@$km->package->killmail->victim->ship_type_id ])->name;
-    $totalValue = number_format($km->package->zkb->totalValue);
+    try {
+        $systemName = $esi->invoke('get', '/universe/systems/{system_id}/', [ 'system_id' => @$km->package->killmail->solar_system_id ])->name;
+        $killTime = $km->package->killmail->killmail_time;
+        $victimName = $esi->invoke('get', '/characters/{character_id}/', [ 'character_id' => @$km->package->killmail->victim->character_id ])->name;
+        $victimCorpName = $esi->invoke('get', '/corporations/{corporation_id}/', [ 'corporation_id' => @$km->package->killmail->victim->corporation_id ])->corporation_name;
+        $victimAllianceName = $esi->invoke('get', '/alliances/{alliance_id}/', [ 'alliance_id' => @$km->package->killmail->victim->alliance_id ])->alliance_name;
+        $shipName = $esi->invoke('get', '/universe/types/{type_id}/', [ 'type_id' => @@$km->package->killmail->victim->ship_type_id ])->name;
+        $totalValue = number_format($km->package->zkb->totalValue);
+    } catch (Exception $e) {
+        echo 'Caught exception: ',  $e->getMessage(), "\n";
+        continue;
+    }
     $msg = "**{$killTime}**\n\n**{$shipName}** worth **{$totalValue} ISK** flown by **{$victimName}** of (***{$victimCorpName}|{$victimAllianceName}***) killed in {$systemName}\nhttps://zkillboard.com/kill/{$killID}/";
 
     $context = stream_context_create(array(
