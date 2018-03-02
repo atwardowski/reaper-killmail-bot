@@ -18,8 +18,6 @@ $webhookurl OR die('You need to configure this script before you run it.');
 
 $esi = new Eseye();
 
-
-print 123=='124';
 while (1) {
     $postkill=false;
     $json = file_get_contents('http://redisq.zkillboard.com/listen.php?queueID=reaper1');
@@ -45,9 +43,9 @@ while (1) {
         $systemName = $esi->invoke('get', '/universe/systems/{system_id}/', [ 'system_id' => @$km->package->killmail->solar_system_id ])->name;
         $killTime = $km->package->killmail->killmail_time;
         $victimName = $esi->invoke('get', '/characters/{character_id}/', [ 'character_id' => @$km->package->killmail->victim->character_id ])->name;
-        $victimCorpName = $esi->invoke('get', '/corporations/{corporation_id}/', [ 'corporation_id' => @$km->package->killmail->victim->corporation_id ])->corporation_name;
-        $victimAllianceName = $esi->invoke('get', '/alliances/{alliance_id}/', [ 'alliance_id' => @$km->package->killmail->victim->alliance_id ])->alliance_name;
-        $shipName = $esi->invoke('get', '/universe/types/{type_id}/', [ 'type_id' => @@$km->package->killmail->victim->ship_type_id ])->name;
+        $victimCorpName = $esi->invoke('get', '/corporations/{corporation_id}/', [ 'corporation_id' => @$km->package->killmail->victim->corporation_id ])->name;
+        $victimAllianceName = $esi->invoke('get', '/alliances/{alliance_id}/', [ 'alliance_id' => @$km->package->killmail->victim->alliance_id ])->name;
+        $shipName = $esi->invoke('get', '/universe/types/{type_id}/', [ 'type_id' => @$km->package->killmail->victim->ship_type_id ])->name;
         $totalValue = number_format($km->package->zkb->totalValue);
     } catch (Exception $e) {
         echo 'Caught exception: ',  $e->getMessage(), "\n";
