@@ -17,6 +17,7 @@ is_file('config.php') AND include 'config.php';
 $webhookurl OR die('You need to configure this script before you run it.');
 
 $esi = new Eseye();
+$esi->setVersion('v4');
 
 while (1) {
     $postkill=false;
